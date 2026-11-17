@@ -1,0 +1,51 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+typedef void(^DCB)(NSDictionary*r,NSError*e);
+typedef void(^ICB)(UIImage*i);
+@interface API : NSObject
+@property (nonatomic,copy) NSString *baseUrl,*biliUrl,*qqUrl,*token,*ua;
++ (API *)s;
+- (void)login:(NSString*)u pwd:(NSString*)p cb:(DCB)cb;
+- (void)getCode:(NSString*)e cb:(DCB)cb;
+- (void)register:(NSString*)e code:(NSString*)c name:(NSString*)n pwd:(NSString*)p cb:(DCB)cb;
+- (void)chpwd:(NSString*)e code:(NSString*)c pwd:(NSString*)p cb:(DCB)cb;
+- (void)chkEmail:(NSString*)e cb:(DCB)cb;
+- (void)chkName:(NSString*)n cb:(DCB)cb;
+- (void)getInit:(DCB)cb;
+- (void)latest:(int)s type:(NSString*)t skip:(int)k cb:(DCB)cb;
+- (void)tags:(int)k cb:(DCB)cb;
+- (void)bList:(int)k cb:(DCB)cb;
+- (void)bDetail:(int)i cb:(DCB)cb;
+- (void)bEps:(int)i cb:(DCB)cb;
+- (void)bRel:(int)i cb:(DCB)cb;
+- (void)bLatest:(DCB)cb;
+- (void)bTag:(NSString*)t skip:(int)k cb:(DCB)cb;
+- (void)vod:(int)i ep:(int)e cb:(DCB)cb;
+- (void)getDmk:(int)i ep:(int)e skip:(int)k cb:(DCB)cb;
+- (void)postDmk:(int)i ep:(int)e text:(NSString*)t type:(int)ty time:(double)tm color:(NSString*)c cb:(DCB)cb;
+- (void)biliDmk:(int)oid seg:(int)s cb:(DCB)cb;
+- (void)qqDmk:(NSString*)v page:(int)p cb:(DCB)cb;
+- (void)chars:(int)i cb:(DCB)cb;
+- (void)char:(int)i cb:(DCB)cb;
+- (void)charBg:(int)i skip:(int)k cb:(DCB)cb;
+- (void)persons:(int)i cb:(DCB)cb;
+- (void)person:(int)i cb:(DCB)cb;
+- (void)personBg:(int)i skip:(int)k cb:(DCB)cb;
+- (void)searchPic:(NSString*)k skip:(int)s cb:(DCB)cb;
+- (void)searchBg:(NSString*)k skip:(int)s cb:(DCB)cb;
+- (void)tagInfo:(NSString*)t cb:(DCB)cb;
+- (void)tagList:(NSString*)t skip:(int)k cb:(DCB)cb;
+- (void)thread:(int)i cb:(DCB)cb;
+- (void)colStatus:(int)i cb:(DCB)cb;
+- (void)colBangumi:(int)i type:(NSString*)t cb:(DCB)cb;
+- (void)colCancel:(int)i cb:(DCB)cb;
+- (void)colList:(NSString*)t page:(int)p cb:(DCB)cb;
+- (void)comments:(NSString*)t id:(NSString*)i skip:(int)k cb:(DCB)cb;
+- (void)postComment:(NSString*)t id:(NSString*)i parent:(NSString*)p reply:(NSString*)r contents:(NSString*)c cb:(DCB)cb;
+- (void)cmtReplies:(NSString*)i skip:(int)k cb:(DCB)cb;
+- (void)cmtLike:(NSString*)i cb:(DCB)cb;
+- (void)cmtUnLike:(NSString*)i cb:(DCB)cb;
+- (NSString *)decodeVod:(NSString*)u;
++ (NSDictionary *)parsePB:(NSData*)d;
++ (void)img:(NSString*)u cb:(ICB)cb;
+@end
